@@ -2,8 +2,9 @@
 
 from __future__ import absolute_import
 
-import functools
 import inspect
+
+import functools
 import re
 import six
 
@@ -13,7 +14,7 @@ try:
 except ImportError:
     from urllib import parse as urlparse
 
-from flask.ext.restful import fields
+from flask_restful import fields
 from flask_restful_swagger import StorageSingleton
 
 from flask_restful_swagger.registry import get_current_registry
@@ -258,7 +259,7 @@ class SwaggerEndpoint(object):
                             op[att_name] = att_value
                     elif hasattr(att_value, '__name__'):
                         op[att_name] = att_value.__name__
-                    # TODO: else: raise CustomException
+                        # TODO: else: raise CustomException
                 operations.append(op)
         return operations
 
@@ -394,19 +395,19 @@ def add_model(model_class):
 def deduce_swagger_type(python_type_or_object, nested_type=None):
     # TODO: refactor this
     if predicate(python_type_or_object, (
-            str,
-            fields.String,
-            fields.FormattedString,
-            fields.Url,
-            int,
-            fields.Integer,
-            float,
-            fields.Float,
-            fields.Arbitrary,
-            fields.Fixed,
-            bool,
-            fields.Boolean,
-            fields.DateTime,
+        str,
+        fields.String,
+        fields.FormattedString,
+        fields.Url,
+        int,
+        fields.Integer,
+        float,
+        fields.Float,
+        fields.Arbitrary,
+        fields.Fixed,
+        bool,
+        fields.Boolean,
+        fields.DateTime,
     )):
         return {'type': deduce_swagger_type_flat(python_type_or_object)}
 
@@ -418,7 +419,7 @@ def deduce_swagger_type(python_type_or_object, nested_type=None):
                 'type': 'array',
                 'items': {
                     '$ref': deduce_swagger_type_flat(
-                            python_type_or_object.container, nested_type
+                        python_type_or_object.container, nested_type
                     )
                 }
             }
