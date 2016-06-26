@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
-import functools
-import warnings
-import re
 import inspect
-import os
 import mimetypes
 
+import functools
+import os
+import re
+import warnings
 from flask import Response
 from jinja2 import Template
 

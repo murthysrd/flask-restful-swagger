@@ -28,4 +28,5 @@ class StorageSingleton(object):
 
         return cls.__obj
 
+
 root_path = os.path.dirname(__file__)
