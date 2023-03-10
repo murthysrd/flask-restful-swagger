@@ -66,7 +66,8 @@ def render_page(page, info):
 
     conf = {
         'base_url': url + st.api_spec_static,
-        'full_base_url': url + st.api_spec_static
+        'full_base_url': url + st.api_spec_static,
+        'auth_token_type': req_registry['authTokenType']
     }
     if info is not None:
         conf.update(info)

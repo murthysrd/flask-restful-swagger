@@ -37,6 +37,7 @@ from flask_restful_swagger.utils import (
 def _docs(api,
           api_version='0.0',
           swagger_version='1.2',
+          auth_token_type=None,
           base_path='http://localhost:5000',
           resource_path='/',
           produces="application/json",
@@ -60,7 +61,7 @@ def _docs(api,
         register_once(
             api, api_add_resource, api_version,
             swagger_version, base_path, resource_path,
-            produces, api_spec_url, description,
+            produces, api_spec_url, description, auth_token_type,
         )
 
         resource = return_class(resource)
@@ -114,7 +115,8 @@ def register_once(api,
                   resource_path,
                   produces,
                   endpoint_path,
-                  description):
+                  description,
+                  auth_token_type):
     def registering_blueprint(setup_state):
         reg = registry[setup_state.blueprint.name]
         reg['x-api-prefix'] = setup_state.url_prefix
@@ -126,6 +128,7 @@ def register_once(api,
             'apiVersion': api_version,
             'swaggerVersion': swagger_version,
             'basePath': base_path,
+            'authTokenType': auth_token_type,
             'spec_endpoint_path': endpoint_path,
             'resourcePath': resource_path,
             'produces': produces,
